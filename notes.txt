@@ -1,0 +1,8 @@
+echo "# 0430_HW_LinuxLab_SimpleScript" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jareonbailey-web/0430_HW_LinuxLab_SimpleScript.git
+git push -u origin main
+
