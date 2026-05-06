@@ -1,60 +1,81 @@
 #!/bin/bash
 
 # ============================================
-# backup_and_report.sh
-# Creates a timestamped backup of a directory,
-# generates a system report, and logs results.
+# File Organizer Script
+# Sorts files from a source dir into categories
 # ============================================
 
 echo "=========================================="
-echo "   Backup & System Report Script"
+echo " Welcome to the File Organizer Script "
 echo "=========================================="
+echo ""
 
-# 1. Print current date and time
-date
+# Step 1: Print an inspiring poem before we get to work
+echo "--- A Word From Horatius ---"
+echo ""
+echo "Then out spake brave Horatius,"
+echo "the Captain of the Gate:"
+echo "\"To every man upon this earth\""
+echo "\"Death cometh soon or late.\""
+echo "\"And how can man die better\""
+echo "\"than facing fearful odds,\""
+echo "\"For the ashes of his fathers,\""
+echo "\"And the temples of his Gods...\""
+echo ""
+echo "----------------------------"
+echo ""
 
-# 2. Print the current working directory
-pwd
+# Step 2: Define source and destination
+SOURCE_DIR="$HOME/Downloads"
+DEST_DIR="$HOME/Organized_Files"
 
-# 3. Create a backup directory with a timestamp
-TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-BACKUP_DIR=~/Desktop/backup_$TIMESTAMP
-mkdir -p "$BACKUP_DIR"
-echo "Backup directory created: $BACKUP_DIR"
+echo "Source directory: $SOURCE_DIR"
+echo "Destination directory: $DEST_DIR"
+echo ""
 
-# 4. Copy Documents folder contents into backup (one level deep)
-cp -r ~/Documents/TheoWAF/CloudFoundations/. "$BACKUP_DIR"
-echo "Files copied to backup directory."
+# Step 3: Create organized subdirectories
+echo "Creating destination folders..."
+mkdir -p "$DEST_DIR/Images"
+mkdir -p "$DEST_DIR/Documents"
+mkdir -p "$DEST_DIR/Videos"
+mkdir -p "$DEST_DIR/Archives"
+mkdir -p "$DEST_DIR/Other"
 
-# 5. List the backed-up files
-echo "--- Backed up files ---"
-ls -al "$BACKUP_DIR"
+# Step 4: Copy image files
+echo "Copying image files..."
+cp "$SOURCE_DIR"/*.jpg "$DEST_DIR/Images/" 2>/dev/null
+cp "$SOURCE_DIR"/*.png "$DEST_DIR/Images/" 2>/dev/null
 
-# 6. Show disk usage of the backup
-du -sh "$BACKUP_DIR"
+# Step 5: Copy document files
+echo "Copying document files..."
+cp "$SOURCE_DIR"/*.pdf "$DEST_DIR/Documents/" 2>/dev/null
+cp "$SOURCE_DIR"/*.txt "$DEST_DIR/Documents/" 2>/dev/null
 
-# 7. Display the current logged-in user
-whoami
+# Step 6: Copy video files
+echo "Copying video files..."
+cp "$SOURCE_DIR"/*.mp4 "$DEST_DIR/Videos/" 2>/dev/null
 
-# 8. Show system uptime
-uptime
+# Step 7: Copy archive files
+echo "Copying archive files..."
+cp "$SOURCE_DIR"/*.zip "$DEST_DIR/Archives/" 2>/dev/null
 
-# 9. Count files in the backup directory
-FILE_COUNT=$(ls "$BACKUP_DIR" | wc -l)
-echo "Total files/folders in backup: $FILE_COUNT"
+# Step 8: List what was organized
+echo ""
+echo "--- Organization Summary ---"
+ls "$DEST_DIR"
 
-# 10. Create a log file inside the backup directory
-LOG_FILE="$BACKUP_DIR/backup_log.txt"
-echo "Backup completed on: $(date)" > "$LOG_FILE"
-echo "Backed up by: $(whoami)" >> "$LOG_FILE"
-echo "Source: ~/Documents/TheoWAF/CloudFoundations/" >> "$LOG_FILE"
-echo "Log file created at: $LOG_FILE"
+# Step 9: Count total files copied
+FILE_COUNT=$(find "$DEST_DIR" -type f | wc -l)
+echo ""
+echo "Total files organized: $FILE_COUNT"
 
-# 11. Display the contents of the log file
-cat "$LOG_FILE"
+# Step 10: Show disk usage of new folder
+echo ""
+echo "Disk usage of Organized_Files:"
+du -sh "$DEST_DIR"
 
-# 12. Print a closing message
-echo "=========================================="
-echo "   Backup Complete! Have a great day."
-echo "=========================================="
-
+# Step 11: Log the event with a timestamp
+echo ""
+echo "Logging activity..."
+date >> "$DEST_DIR/organizer_log.txt"
+echo "Files organized: $FILE_COUNT" >> "$DEST_DIR/organizer_log.txt"
