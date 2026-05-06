@@ -6,4 +6,4 @@ with a timestamp, and prints a summary to the console.
 
 The script opens by printing a stanza from **"Horatius at the Bridge"** by
 Thomas Babington Macaulay — a reminder that even a humble file organizer
-deserves a heroic send-off before facing the chaos of a Downloads folder.
+deserves a heroic send-off before facing the chaos of a Downloads folder.# 0430_HW_LinuxLab_SimpleScript
