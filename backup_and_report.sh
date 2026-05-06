@@ -79,3 +79,17 @@ echo ""
 echo "Logging activity..."
 date >> "$DEST_DIR/organizer_log.txt"
 echo "Files organized: $FILE_COUNT" >> "$DEST_DIR/organizer_log.txt"
+
+# Step 12: Display the log
+echo ""
+echo "--- Activity Log ---"
+cat "$DEST_DIR/organizer_log.txt"
+
+# Step 13: Done!
+echo ""
+echo "Organization complete! Your files are in: $DEST_DIR"
+echo "=========================================="
+
+
+
+
